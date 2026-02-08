@@ -17,4 +17,4 @@ class ShoppingListTable(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
 
-    items: list[ItemTable] = Relationship(back_populates="shopping_list")
+    items: list["ItemTable"] = Relationship(back_populates="shopping_list")
