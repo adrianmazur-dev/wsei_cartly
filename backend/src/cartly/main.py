@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from .api import include_routers, register_exception_handlers, register_middlewares
+from .config import settings
 from .logging import configure_logging, get_logger
 
 configure_logging()
@@ -15,9 +16,6 @@ logger = get_logger(__name__)
 async def lifespan(app: FastAPI):
     from cartly_infra.database import create_tables, init_engine
 
-    from .config import CoreSettings
-
-    settings = CoreSettings()
     settings.data_dir.mkdir(parents=True, exist_ok=True)
     init_engine(settings.database_url, echo=settings.debug)
     await create_tables()
@@ -32,6 +30,7 @@ def create_app() -> FastAPI:
 
     app = FastAPI(
         lifespan=lifespan,
+        root_path=settings.root_path,
         docs_url=_DOCS_URL,
         openapi_url=_OPENAPI_URL,
     )

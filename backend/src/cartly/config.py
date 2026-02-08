@@ -18,9 +18,14 @@ class CoreSettings(BaseSettings):
     log_format: Literal["TEXT", "JSON"] = "TEXT"
     debug: bool = False
 
+    root_path: str = ""
+
     data_dir: Path = Path("./data")
 
     @computed_field
     @property
     def database_url(self) -> str:
         return f"sqlite+aiosqlite:///{self.data_dir / 'cartly.db'}"
+
+
+settings = CoreSettings()
