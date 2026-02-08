@@ -1,0 +1,39 @@
+target-version = "py312"
+line-length = 120
+respect-gitignore = true
+
+[lint]
+select = [
+    "F",     # Pyflakes
+    "E",
+    "W",     # Pycodestyle
+    "I",     # Isort (import sorting)
+    "UP",    # Pyupgrade
+    "ASYNC", # Flake8-async
+    "C4",    # Flake8-comprehensions
+    "PIE",   # Flake8-pie
+    "RUF",   # Ruff-specific rules
+    "PD",    # Pandas-vet
+    "B",     # Bugbear
+]
+
+ignore = [
+    "E501", # Line too long
+    "D107", # Missing docstring in __init__
+    "C408", # Unnecessary dict() call
+]
+
+[lint.isort]
+combine-as-imports = true
+required-imports = ["from __future__ import annotations"]
+
+[lint.mccabe]
+max-complexity = 15
+
+[lint.per-file-ignores]
+"tests/*.py" = ["ASYNC", "S101"]
+"*.ipynb" = ["I"]
+
+[format]
+quote-style = "double"
+skip-magic-trailing-comma = false
