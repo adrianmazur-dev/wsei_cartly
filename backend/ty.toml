@@ -1,9 +1,6 @@
 [environment]
 python-version = "3.12"
 
-[src]
-include = ["src", "tests"]
-
 [rules]
 possibly-missing-import = "error"
 invalid-argument-type = "error"
