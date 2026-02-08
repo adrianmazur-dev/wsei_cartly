@@ -2,7 +2,10 @@
 name = "cartly-infra"
 version = "1.0.0"
 requires-python = ">=3.12"
-dependencies = ["cartly-domain"]
+dependencies = [
+    "cartly-domain",
+    "sqlmodel>=0.0.32",
+]
 
 [tool.uv_build]
 source-dir = "src"

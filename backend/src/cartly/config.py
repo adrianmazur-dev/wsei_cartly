@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Literal
 
+from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -15,3 +17,10 @@ class CoreSettings(BaseSettings):
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
     log_format: Literal["TEXT", "JSON"] = "TEXT"
     debug: bool = False
+
+    data_dir: Path = Path("./data")
+
+    @computed_field
+    @property
+    def database_url(self) -> str:
+        return f"sqlite+aiosqlite:///{self.data_dir / 'cartly.db'}"

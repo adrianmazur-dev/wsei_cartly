@@ -13,10 +13,16 @@ logger = get_logger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
+    from cartly_infra.database import create_tables, init_engine
+
+    from .config import CoreSettings
+
+    settings = CoreSettings()
+    settings.data_dir.mkdir(parents=True, exist_ok=True)
+    init_engine(settings.database_url, echo=settings.debug)
+    await create_tables()
     logger.info("Starting Cartly API")
     yield
-    # Shutdown
     logger.info("Shutting down Cartly API")
 
 
