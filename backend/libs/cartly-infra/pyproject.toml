@@ -1,0 +1,12 @@
+[project]
+name = "cartly-infra"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = ["cartly-domain"]
+
+[tool.uv_build]
+source-dir = "src"
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"

@@ -1,2 +1,6 @@
 [tool.uv.workspace]
-members = ["backend"]
+members = ["backend", "backend/libs/cartly-domain", "backend/libs/cartly-infra"]
+
+[tool.uv.sources]
+cartly-domain = { workspace = true }
+cartly-infra = { workspace = true }

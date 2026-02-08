@@ -4,13 +4,19 @@ requires-python = ">=3.12"
 
 [manifest]
 members = [
-    "backend",
+    "cartly",
+    "cartly-domain",
+    "cartly-infra",
 ]
 
 [[package]]
-name = "backend"
+name = "cartly"
 version = "1.0.0"
 source = { virtual = "backend" }
+dependencies = [
+    { name = "cartly-domain" },
+    { name = "cartly-infra" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -19,12 +25,32 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [
+    { name = "cartly-domain", editable = "backend/libs/cartly-domain" },
+    { name = "cartly-infra", editable = "backend/libs/cartly-infra" },
+]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "ruff", specifier = ">=0.15.0" },
     { name = "ty", specifier = ">=0.0.15" },
 ]
+
+[[package]]
+name = "cartly-domain"
+version = "1.0.0"
+source = { editable = "backend/libs/cartly-domain" }
+
+[[package]]
+name = "cartly-infra"
+version = "1.0.0"
+source = { editable = "backend/libs/cartly-infra" }
+dependencies = [
+    { name = "cartly-domain" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "cartly-domain" }]
 
 [[package]]
 name = "ruff"
