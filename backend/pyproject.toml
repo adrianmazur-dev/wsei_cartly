@@ -3,6 +3,7 @@ name = "cartly"
 version = "1.0.0"
 requires-python = ">=3.12"
 dependencies = [
+    "aiosqlite>=0.22.1",
     "cartly-domain",
     "cartly-infra",
     "fastapi[standard]>=0.128.5",
