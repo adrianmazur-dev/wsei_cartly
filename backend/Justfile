@@ -17,8 +17,8 @@ check:
 install:
 	uv sync --all-groups --all-extras
 
-test:
-	uv run pytest
+test *args:
+	uv run pytest {{args}}
 
 run:
 	uv run fastapi dev src/cartly/main.py

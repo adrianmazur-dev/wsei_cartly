@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  checks: write
 
 defaults:
   run:
@@ -34,7 +35,14 @@ jobs:
         run: just check
 
       - name: Run tests
-        run: just test
+        run: just test --junitxml=reports/test-results.xml
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v6
+        if: success() || failure()
+        with:
+          report_paths: 'backend/reports/test-results.xml'
+
         
       
           
