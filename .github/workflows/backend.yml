@@ -1,0 +1,40 @@
+name: backend
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: astral-sh/setup-uv@v7.3.0
+        with: 
+          enable-cache: true
+          
+      - uses: extractions/setup-just@v3
+
+      - name: Install dependencies
+        run: just install
+
+      - name: Run checks
+        run: just check
+
+      - name: Run tests
+        run: just test
+        
+      
+          
