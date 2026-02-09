@@ -5,7 +5,7 @@ import ShoppingListCard from '@/components/ShoppingListCard.vue'
 import CreateListCard from '@/components/CreateListCard.vue'
 import CreateListDialog from '@/components/CreateListDialog.vue'
 import Button from 'primevue/button'
-import { IconLayoutGrid, IconList, IconAdjustmentsHorizontal } from '@tabler/icons-vue'
+import { IconLayoutGrid, IconList, IconAdjustmentsHorizontal, IconPlus } from '@tabler/icons-vue'
 
 const store = useShoppingListsStore()
 const showCreateDialog = ref(false)
@@ -55,6 +55,10 @@ onMounted(() => {
         </div>
 
         <CreateListDialog v-model:visible="showCreateDialog" />
+
+        <button class="fab" aria-label="Create new list" @click="showCreateDialog = true">
+            <IconPlus :size="28" />
+        </button>
     </div>
 </template>
 
@@ -124,5 +128,37 @@ onMounted(() => {
     .cards-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--p-primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition:
+        background 0.2s,
+        box-shadow 0.2s,
+        transform 0.3s;
+}
+
+.fab:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background: var(--p-primary-600);
+}
+
+.fab:hover :deep(svg) {
+    transform: rotate(90deg);
+    transition: transform 0.3s;
 }
 </style>

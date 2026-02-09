@@ -122,13 +122,18 @@ const mockAvatars = computed(() => {
     padding: 1.25rem;
     cursor: pointer;
     transition:
-        box-shadow 0.2s,
-        transform 0.2s;
+        box-shadow 0.3s,
+        transform 0.3s;
+    overflow: hidden;
 }
 
 .shopping-list-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.shopping-list-card:hover .card-title {
+    color: var(--p-primary-color);
 }
 
 .card-header {
@@ -156,6 +161,7 @@ const mockAvatars = computed(() => {
     font-weight: 600;
     color: var(--p-surface-900);
     margin: 0 0 0.25rem 0;
+    transition: color 0.2s;
 }
 
 .card-preview {

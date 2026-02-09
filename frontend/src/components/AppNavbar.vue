@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { IconShoppingBag, IconBell, IconSearch } from '@tabler/icons-vue'
+import { IconBell, IconSearch } from '@tabler/icons-vue'
 import Avatar from 'primevue/avatar'
 import InputText from 'primevue/inputtext'
 import Badge from 'primevue/badge'
+import CartlyLogo from '@/assets/images/logo.svg'
 </script>
 
 <template>
     <header class="app-navbar">
         <div class="navbar-left">
-            <IconShoppingBag :size="24" class="navbar-logo" />
-            <span class="navbar-title">Shopping Lists</span>
+            <CartlyLogo class="navbar-logo" />
         </div>
 
         <div class="navbar-center">
@@ -41,8 +41,12 @@ import Badge from 'primevue/badge'
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 2rem;
-    background: var(--p-surface-0);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--p-surface-200);
+    position: sticky;
+    top: 0;
+    z-index: 30;
 }
 
 .navbar-left {
@@ -52,7 +56,9 @@ import Badge from 'primevue/badge'
 }
 
 .navbar-logo {
-    color: var(--p-primary-color);
+    width: 120px;
+    fill: #42b883;
+    color: #42b883;
 }
 
 .navbar-title {
