@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from importlib.metadata import version
 
 from fastapi import FastAPI
 
 from .api import include_routers, register_exception_handlers, register_middlewares
 from .config import settings
 from .logging import configure_logging, get_logger
+
+APP_VERSION = version(__package__) if __package__ else "unknown"
 
 configure_logging()
 logger = get_logger(__name__)
@@ -29,6 +32,7 @@ def create_app() -> FastAPI:
     _OPENAPI_URL = "/openapi.json"
 
     app = FastAPI(
+        version=APP_VERSION,
         lifespan=lifespan,
         root_path=settings.root_path,
         docs_url=_DOCS_URL,
@@ -45,6 +49,7 @@ def create_app() -> FastAPI:
     @app.get("/")
     async def root():
         return {
+            "version": APP_VERSION,
             "docs": _DOCS_URL,
             "openapi": _OPENAPI_URL,
         }
