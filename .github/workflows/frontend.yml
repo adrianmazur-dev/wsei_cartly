@@ -1,6 +1,7 @@
 name: frontend
 
 on:
+  workflow_dispatch:
   push:
     branches: [development]
     paths:
@@ -18,6 +19,7 @@ permissions:
 defaults:
   run:
     working-directory: frontend
+    
 
 jobs:
   frontend-check:
