@@ -21,4 +21,4 @@ test *args:
 	uv run pytest {{args}}
 
 run:
-	uv run fastapi dev src/cartly/main.py
+	uv run uvicorn cartly.main:app --host 127.0.0.1 --port 8000 --reload
