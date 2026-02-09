@@ -60,7 +60,7 @@ wheels = [
 
 [[package]]
 name = "cartly"
-version = "1.0.0"
+version = "0.2.0"
 source = { editable = "backend" }
 dependencies = [
     { name = "aiosqlite" },
@@ -105,12 +105,12 @@ dev = [
 
 [[package]]
 name = "cartly-domain"
-version = "1.0.0"
+version = "0.2.0"
 source = { editable = "backend/libs/cartly-domain" }
 
 [[package]]
 name = "cartly-infra"
-version = "1.0.0"
+version = "0.2.0"
 source = { editable = "backend/libs/cartly-infra" }
 dependencies = [
     { name = "cartly-domain" },

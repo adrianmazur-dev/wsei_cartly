@@ -8,10 +8,6 @@ permissions:
   contents: write
   packages: write
 
-defaults:
-  run:
-    working-directory: backend
-
 jobs:
   bump-version:
     runs-on: ubuntu-latest

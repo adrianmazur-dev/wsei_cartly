@@ -1,0 +1,10 @@
+[tool.commitizen]
+tag_format = "v$version"
+version = "0.2.0"
+version_files = [
+    "backend/pyproject.toml:version",
+    "backend/libs/cartly-domain/pyproject.toml:version",
+    "backend/libs/cartly-infra/pyproject.toml:version",
+]
+version_scheme = "pep440"
+changelog_file = "CHANGELOG.md"

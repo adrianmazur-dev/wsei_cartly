@@ -29,16 +29,6 @@ asyncio_mode = "auto"
 [tool.uv_build]
 source-dir = "src"
 
-[tool.commitizen]
-tag_format = "v$version"
-version_files = [
-    "pyproject.toml:version",
-    "libs/cartly-domain/pyproject.toml:version",
-    "libs/cartly-infra/pyproject.toml:version",
-]
-version_provider = "pep621"
-version_scheme = "pep440"
-
 [build-system]
 requires = ["uv_build"]
 build-backend = "uv_build"
