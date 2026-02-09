@@ -1,3 +1,9 @@
+## v0.4.3 (2026-02-09)
+
+### Fix
+
+- update command to use uvicorn
+
 ## v0.4.2 (2026-02-09)
 
 ### Fix
