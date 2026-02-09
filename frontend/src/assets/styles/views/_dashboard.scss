@@ -18,33 +18,6 @@
     margin: $spacing-xs 0 0 0;
 }
 
-.dashboard-actions {
-    display: flex;
-    align-items: center;
-    gap: $spacing-base;
-}
-
-.view-toggle {
-    display: flex;
-    background: var(--p-surface-100);
-    border-radius: $radius-sm;
-    padding: $spacing-2xs;
-
-    :deep(.p-button) {
-        color: var(--p-surface-400);
-
-        &.active {
-            color: var(--p-surface-900);
-            background: var(--p-surface-0);
-            box-shadow: $shadow-sm;
-        }
-    }
-}
-
-.filter-btn-label {
-    margin-left: $spacing-md;
-}
-
 .cards-grid {
     display: grid;
     grid-template-columns: repeat($grid-columns-lg, 1fr);

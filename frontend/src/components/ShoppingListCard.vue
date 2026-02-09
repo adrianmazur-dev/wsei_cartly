@@ -10,8 +10,6 @@ import {
     IconDots,
 } from '@tabler/icons-vue'
 import ProgressBar from 'primevue/progressbar'
-import Avatar from 'primevue/avatar'
-import AvatarGroup from 'primevue/avatargroup'
 import Button from 'primevue/button'
 
 const props = defineProps<{
@@ -55,14 +53,6 @@ const timeAgo = computed(() => {
     const diffWeeks = Math.floor(diffDays / 7)
     return `Edited ${diffWeeks}w ago`
 })
-
-const mockAvatars = computed(() => {
-    const count = (Math.abs(iconIndex.value) % 3) + 1
-    return Array.from(
-        { length: count },
-        (_, i) => `https://i.pravatar.cc/32?img=${iconIndex.value * 10 + i + 1}`,
-    )
-})
 </script>
 
 <template>
@@ -100,15 +90,6 @@ const mockAvatars = computed(() => {
         </div>
 
         <div class="card-footer">
-            <AvatarGroup>
-                <Avatar
-                    v-for="(src, i) in mockAvatars"
-                    :key="i"
-                    :image="src"
-                    shape="circle"
-                    size="small"
-                />
-            </AvatarGroup>
             <span class="time-ago">{{ timeAgo }}</span>
         </div>
     </div>

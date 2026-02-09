@@ -24,69 +24,13 @@
 
 .navbar-center {
     flex: 0 1 $search-max-width;
-}
-
-.search-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
-}
-
-.search-icon {
-    position: absolute;
-    left: $spacing-base;
-    color: var(--p-surface-400);
-    z-index: 1;
-}
-
-.search-input {
-    width: 100%;
-    padding-left: $spacing-4xl;
-    border-radius: $radius-pill;
-    background: var(--p-surface-100);
-    border-color: var(--p-surface-200);
+    justify-content: center;
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
     gap: $spacing-2xl;
-}
-
-.notification-wrapper {
-    position: relative;
-    cursor: pointer;
-    color: var(--p-surface-600);
-}
-
-.notification-badge {
-    position: absolute;
-    top: $badge-offset;
-    right: $badge-offset;
-    font-size: $font-size-2xs;
-    min-width: $spacing-lg;
-    height: $spacing-lg;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: $spacing-base;
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-name {
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: var(--p-surface-900);
-}
-
-.user-plan {
-    font-size: $font-size-xs;
-    color: var(--p-surface-500);
 }

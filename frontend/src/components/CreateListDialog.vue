@@ -54,6 +54,7 @@ async function submit() {
                     placeholder="What's this list for?"
                     rows="3"
                     fluid
+                    style="resize: none"
                 />
             </div>
         </div>
