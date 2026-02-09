@@ -1,3 +1,9 @@
+## v0.4.2 (2026-02-09)
+
+### Fix
+
+- fix configuration not propagated for logging, tweaks for better readibility
+
 ## v0.4.1 (2026-02-09)
 
 ### Fix
