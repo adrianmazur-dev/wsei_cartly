@@ -4,6 +4,7 @@ import { useShoppingListsStore } from '@/stores/shopping-lists'
 import ShoppingListCard from '@/components/ShoppingListCard.vue'
 import CreateListCard from '@/components/CreateListCard.vue'
 import CreateListDialog from '@/components/CreateListDialog.vue'
+import { IconPlus } from '@tabler/icons-vue'
 
 const store = useShoppingListsStore()
 const showCreateDialog = ref(false)
