@@ -2,6 +2,7 @@
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "pyproject.toml": "README.md, ty.toml, ruff.toml, uv.lock",
+        "Dockerfile": "docker-compose*, dockerfile*, .dockerignore*",
     },
     "python.analysis.extraPaths": [
         "./backend/src"

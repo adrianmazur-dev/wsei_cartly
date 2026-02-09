@@ -3,8 +3,14 @@ name: backend
 on:
   push:
     branches: [development]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
   pull_request:
     branches: [development]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
 
 permissions:
   contents: read
@@ -40,4 +46,4 @@ jobs:
         uses: mikepenz/action-junit-report@v6
         if: success() || failure()
         with:
-          report_paths: 'backend/reports/test-results.xml'
+          report_paths: "backend/reports/test-results.xml"

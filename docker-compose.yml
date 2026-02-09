@@ -1,15 +1,27 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - backend-data:/app/data
     environment:
-      - data_dir=/app/data
-      - log_level=INFO
+      - DATA_DIR=/app/data
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=JSON
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - BACKEND_URL=http://backend:8000/
+    depends_on:
+      - backend
 
 volumes:
   backend-data:

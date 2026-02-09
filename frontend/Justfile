@@ -11,5 +11,8 @@ check:
 install:
 	npm i
 
+clean-install:
+	npm ci
+
 run:
 	npm run dev
