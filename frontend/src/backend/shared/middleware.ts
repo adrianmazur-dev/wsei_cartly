@@ -26,4 +26,3 @@ export const errorMiddleware: Middleware = {
         return new ApiError(null, `Fetch error occurred`, error)
     },
 }
-

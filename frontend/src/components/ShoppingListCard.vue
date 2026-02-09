@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { ShoppingListWithItems } from '@/stores/shopping-lists'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 import {
     IconShoppingCart,
     IconTools,
@@ -56,7 +59,11 @@ const timeAgo = computed(() => {
 </script>
 
 <template>
-    <div class="shopping-list-card">
+    <div
+        class="shopping-list-card"
+        style="cursor: pointer"
+        @click="router.push({ name: 'list-detail', params: { id: list.id } })"
+    >
         <div class="card-header">
             <div
                 class="category-icon"
