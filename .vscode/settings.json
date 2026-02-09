@@ -1,9 +1,6 @@
 {
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "pyproject.toml": "README.md, CHANGELOG.md, .cz.toml, ty.toml, ruff.toml, uv.lock",
-    },
-    "python.analysis.extraPaths": [
-        "./backend/src"
-    ]
+        "pyproject.toml": "README.md, CHANGELOG.md",
+    }
 }

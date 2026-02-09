@@ -1,0 +1,9 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "pyproject.toml": "README.md, ty.toml, ruff.toml, uv.lock",
+    },
+    "python.analysis.extraPaths": [
+        "./backend/src"
+    ]
+}
