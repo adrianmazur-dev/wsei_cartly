@@ -11,7 +11,7 @@ from .logging import configure_logging, get_logger
 
 APP_VERSION = version(__package__) if __package__ else "unknown"
 
-configure_logging()
+configure_logging(log_level=settings.log_level, log_format=settings.log_format)
 logger = get_logger(__name__)
 
 
