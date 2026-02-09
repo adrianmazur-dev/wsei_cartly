@@ -1,3 +1,9 @@
+## v0.3.0 (2026-02-09)
+
+### Feat
+
+- add Justfile for backend run command and handle app version metadata
+
 ## v0.2.1 (2026-02-09)
 
 ### Refactor
