@@ -1,3 +1,22 @@
+## v0.4.0 (2026-02-09)
+
+### Feat
+
+- implement frontend and backend Docker configurations with CI/CD workflows
+- **frontend**: add delete list functionality with confirmation dialog
+- **frontend**: implement shopping list detail view and associated styles
+- **frontend**: refactor styles and clean up unused components in navbar and dashboard
+- refactor styles to SCSS and implement design tokens
+- **frontend**: integrate SVG logo and enhance navbar with new styles
+- **frontend**: add dashboard with shopping lists
+- **frontend**: initialize frontend project with vue
+
+### Fix
+
+- fix release workflow [skip ci]
+- **workflow**: rename build job to check and fix github actions grouping
+- **frontend**: add plus icon
+
 ## v0.3.0 (2026-02-09)
 
 ### Feat
