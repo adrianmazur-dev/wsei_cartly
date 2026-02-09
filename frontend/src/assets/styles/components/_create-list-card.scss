@@ -1,0 +1,44 @@
+.create-list-card {
+    border: 2px dashed var(--p-surface-300);
+    border-radius: $radius-md;
+    padding: $spacing-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: $create-card-min-height;
+    cursor: pointer;
+    transition:
+        border-color $transition-fast,
+        background $transition-fast;
+
+    &:hover {
+        border-color: var(--p-primary-color);
+        background: var(--p-primary-50);
+    }
+}
+
+.create-icon {
+    width: $icon-container-md;
+    height: $icon-container-md;
+    border-radius: $radius-full;
+    background: var(--p-surface-100);
+    color: var(--p-surface-500);
+    margin-bottom: $spacing-base;
+
+    @include flex-center;
+}
+
+.create-title {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--p-surface-900);
+    margin: 0 0 $spacing-xs 0;
+}
+
+.create-subtitle {
+    font-size: $font-size-sm;
+    color: var(--p-surface-500);
+    margin: 0;
+    text-align: center;
+}

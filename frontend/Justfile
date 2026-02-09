@@ -1,0 +1,18 @@
+clean:
+	# find . -type d -name "node_modules" -exec rm -rf {} +
+	find . -type d -name "dist" -exec rm -rf {} +
+	@echo "clean done"
+
+check: 
+	npm run lint
+	npm run type-check
+	npm run format
+
+install:
+	npm i
+
+clean-install:
+	npm ci
+
+run:
+	npm run dev

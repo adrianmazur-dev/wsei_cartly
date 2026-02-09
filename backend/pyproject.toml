@@ -1,3 +1,10 @@
+[tool.uv.workspace]
+members = ["libs/cartly-domain", "libs/cartly-infra"]
+
+[tool.uv.sources]
+cartly-domain = { workspace = true }
+cartly-infra = { workspace = true }
+
 [project]
 name = "cartly"
 version = "0.3.0"

@@ -1,0 +1,10 @@
+.app-layout {
+    min-height: 100vh;
+    background: var(--p-surface-50);
+}
+
+.app-main {
+    max-width: $content-max-width;
+    margin: 0 auto;
+    padding: $spacing-3xl;
+}

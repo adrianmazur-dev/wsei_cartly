@@ -1,0 +1,36 @@
+.app-navbar {
+    @include flex-between;
+
+    padding: $spacing-base $spacing-3xl;
+    background: rgba($color-white, $navbar-bg-opacity);
+    backdrop-filter: blur($navbar-blur);
+    border-bottom: 1px solid var(--p-surface-200);
+    position: sticky;
+    top: 0;
+    z-index: $z-navbar;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+.navbar-logo {
+    width: $navbar-logo-width;
+    fill: $color-logo;
+    color: $color-logo;
+}
+
+.navbar-center {
+    flex: 0 1 $search-max-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xl;
+}

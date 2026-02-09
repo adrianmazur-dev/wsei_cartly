@@ -5,14 +5,14 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 WORKDIR /app
 
 COPY pyproject.toml uv.lock ./
-COPY backend/pyproject.toml backend/pyproject.toml
-COPY backend/libs/ backend/libs/
+COPY pyproject.toml pyproject.toml
+COPY libs/ libs/
 
-RUN uv sync --project backend --no-dev --no-install-project
+RUN uv sync --no-dev --no-install-project
 
-COPY backend/src/ backend/src/
+COPY src/ src/
 
-RUN uv sync --project backend --no-dev
+RUN uv sync --no-dev
 
 
 FROM python:3.12-slim
@@ -33,4 +33,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["/app/.venv/bin/fastapi", "run", "backend/src/cartly/main.py", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["/app/.venv/bin/fastapi", "run", "src/cartly/main.py", "--host", "0.0.0.0", "--port", "8000"]
