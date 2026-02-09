@@ -83,6 +83,27 @@
         }
     }
 
+    &__delete-btn {
+        display: flex;
+        align-items: center;
+        gap: $spacing-md;
+        height: 2.5rem;
+        padding: 0 $spacing-xl;
+        background: $color-danger;
+        color: $color-white;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        border: none;
+        border-radius: $radius-sm;
+        cursor: pointer;
+        transition: background $transition-fast;
+        box-shadow: 0 4px 12px rgba($color-danger, 0.2);
+
+        &:hover {
+            background: darken($color-danger, 8%);
+        }
+    }
+
     &__card {
         background: var(--p-surface-0);
         border-radius: 1rem;

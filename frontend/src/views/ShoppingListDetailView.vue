@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useShoppingListsStore } from '@/stores/shopping-lists'
+import { useConfirm } from 'primevue/useconfirm'
 import { IconArrowLeft, IconPlus, IconShare, IconTrash, IconChevronDown } from '@tabler/icons-vue'
 import Checkbox from 'primevue/checkbox'
+import ConfirmDialog from 'primevue/confirmdialog'
 
 const route = useRoute()
+const router = useRouter()
 const store = useShoppingListsStore()
+const confirm = useConfirm()
 
 const listId = computed(() => route.params.id as string)
 const newItemName = ref('')
@@ -46,6 +50,33 @@ async function handleDelete(itemId: string) {
     await store.deleteItem(listId.value, itemId)
 }
 
+async function handleDeleteList() {
+    const hasItems = (store.currentList?.items?.length ?? 0) > 0
+
+    if (hasItems) {
+        confirm.require({
+            message: 'This list contains items. Are you sure you want to delete it?',
+            header: 'Delete list',
+            rejectProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true,
+            },
+            acceptProps: {
+                label: 'Delete',
+                severity: 'danger',
+            },
+            accept: async () => {
+                await store.deleteList(listId.value)
+                router.push('/')
+            },
+        })
+    } else {
+        await store.deleteList(listId.value)
+        router.push('/')
+    }
+}
+
 async function handleShare() {
     await navigator.clipboard.writeText(window.location.href)
     shareTooltip.value = true
@@ -68,6 +99,10 @@ async function handleShare() {
                 <button class="list-detail__share-btn" @click="handleShare">
                     <IconShare :size="18" />
                     <span>{{ shareTooltip ? 'Copied!' : 'Share' }}</span>
+                </button>
+                <button class="list-detail__delete-btn" @click="handleDeleteList">
+                    <IconTrash :size="18" />
+                    <span>Delete</span>
                 </button>
             </div>
         </header>
@@ -147,6 +182,8 @@ async function handleShare() {
     </div>
 
     <div v-else-if="store.loading" class="list-detail__loading">Loading...</div>
+
+    <ConfirmDialog />
 </template>
 
 <style scoped lang="scss" src="@/assets/styles/views/_shopping-list-detail.scss"></style>
