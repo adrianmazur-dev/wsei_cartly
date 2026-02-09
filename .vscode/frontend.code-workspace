@@ -1,0 +1,18 @@
+{
+    "folders": [
+        {
+            "path": "../frontend"
+        },
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "workbench.colorCustomizations": {
+            "titleBar.activeBackground": "#24292e",
+            "titleBar.activeForeground": "#fff",
+            "statusBar.background": "#24292e",
+            "statusBar.foreground": "#fff",
+        }
+    }
+}
