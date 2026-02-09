@@ -1,0 +1,89 @@
+name: release
+
+on:
+  push:
+    branches: [development]
+
+permissions:
+  contents: write
+  packages: write
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump.outputs.version }}
+      bumped: ${{ steps.bump.outputs.bumped }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v7.3.0
+        with:
+          enable-cache: true
+
+      - name: Install commitizen
+        run: uv tool install commitizen
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version
+        id: bump
+        run: |
+          if cz bump --yes --changelog; then
+            VERSION=$(cz version --project)
+            echo "version=v${VERSION}" >> "$GITHUB_OUTPUT"
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bumped=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push changes
+        if: steps.bump.outputs.bumped == 'true'
+        run: |
+          git push
+          git push --tags
+
+  deploy:
+    needs: bump-version
+    if: needs.bump-version.outputs.bumped == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.bump-version.outputs.version }}
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: backend/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/backend:${{ needs.bump-version.outputs.version }}
+            ghcr.io/${{ github.repository }}/backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to Coolify
+        run: |
+          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'

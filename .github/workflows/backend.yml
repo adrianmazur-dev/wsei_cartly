@@ -2,9 +2,9 @@ name: backend
 
 on:
   push:
-    branches: [ development ]
+    branches: [development]
   pull_request:
-    branches: [ development ]
+    branches: [development]
 
 permissions:
   contents: read
@@ -16,16 +16,15 @@ defaults:
 
 jobs:
   build:
-  
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: actions/checkout@v4
-      
+      - uses: actions/checkout@v6
+
       - uses: astral-sh/setup-uv@v7.3.0
-        with: 
+        with:
           enable-cache: true
-          
+
       - uses: extractions/setup-just@v3
 
       - name: Install dependencies
@@ -42,7 +41,3 @@ jobs:
         if: success() || failure()
         with:
           report_paths: 'backend/reports/test-results.xml'
-
-        
-      
-          
