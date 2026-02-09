@@ -64,22 +64,4 @@ async function submit() {
     </Dialog>
 </template>
 
-<style scoped>
-.dialog-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-}
-
-.form-field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--p-surface-700);
-}
-</style>
+<style scoped lang="scss" src="@/assets/styles/components/_create-list-dialog.scss"></style>

@@ -5,7 +5,7 @@ import pinia from '@/plugins/pinia'
 import { setupPrimeVue } from '@/plugins/primevue'
 import { setupGlobalErrors } from '@/plugins/error-handler'
 
-import './assets/styles/style.css'
+import './assets/styles/main.scss'
 
 async function initApp() {
     const app = createApp(App)

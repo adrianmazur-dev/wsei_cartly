@@ -1,0 +1,95 @@
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-2xl;
+}
+
+.dashboard-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--p-surface-900);
+    margin: 0;
+}
+
+.dashboard-subtitle {
+    font-size: $font-size-base;
+    color: var(--p-surface-500);
+    margin: $spacing-xs 0 0 0;
+}
+
+.dashboard-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-base;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--p-surface-100);
+    border-radius: $radius-sm;
+    padding: $spacing-2xs;
+
+    :deep(.p-button) {
+        color: var(--p-surface-400);
+
+        &.active {
+            color: var(--p-surface-900);
+            background: var(--p-surface-0);
+            box-shadow: $shadow-sm;
+        }
+    }
+}
+
+.filter-btn-label {
+    margin-left: $spacing-md;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat($grid-columns-lg, 1fr);
+    gap: $spacing-xl;
+
+    @include respond-to($breakpoint-lg) {
+        grid-template-columns: repeat($grid-columns-md, 1fr);
+    }
+
+    @include respond-to($breakpoint-md) {
+        grid-template-columns: repeat($grid-columns-sm, 1fr);
+    }
+
+    @include respond-to($breakpoint-sm) {
+        grid-template-columns: repeat($grid-columns-xs, 1fr);
+    }
+}
+
+.fab {
+    position: fixed;
+    bottom: $spacing-3xl;
+    right: $spacing-3xl;
+    z-index: $z-fab;
+    width: $fab-size;
+    height: $fab-size;
+    border-radius: $radius-full;
+    background: var(--p-primary-color);
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    box-shadow: $shadow-md;
+    transition:
+        background $transition-fast,
+        box-shadow $transition-fast,
+        transform $transition-base;
+
+    @include flex-center;
+
+    &:hover {
+        box-shadow: $shadow-hover;
+        background: var(--p-primary-600);
+
+        :deep(svg) {
+            transform: rotate($fab-icon-rotation);
+            transition: transform $transition-base;
+        }
+    }
+}

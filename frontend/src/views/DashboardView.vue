@@ -44,7 +44,7 @@ onMounted(() => {
                 </div>
                 <Button outlined>
                     <IconAdjustmentsHorizontal :size="18" />
-                    <span style="margin-left: 0.5rem">Filter</span>
+                    <span class="filter-btn-label">Filter</span>
                 </Button>
             </div>
         </div>
@@ -62,103 +62,4 @@ onMounted(() => {
     </div>
 </template>
 
-<style scoped>
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-}
-
-.dashboard-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--p-surface-900);
-    margin: 0;
-}
-
-.dashboard-subtitle {
-    font-size: 0.875rem;
-    color: var(--p-surface-500);
-    margin: 0.25rem 0 0 0;
-}
-
-.dashboard-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.view-toggle {
-    display: flex;
-    background: var(--p-surface-100);
-    border-radius: 8px;
-    padding: 2px;
-}
-
-.view-toggle :deep(.p-button) {
-    color: var(--p-surface-400);
-}
-
-.view-toggle :deep(.p-button.active) {
-    color: var(--p-surface-900);
-    background: var(--p-surface-0);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-}
-
-@media (max-width: 1200px) {
-    .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.fab {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 50;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--p-primary-color);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition:
-        background 0.2s,
-        box-shadow 0.2s,
-        transform 0.3s;
-}
-
-.fab:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    background: var(--p-primary-600);
-}
-
-.fab:hover :deep(svg) {
-    transform: rotate(90deg);
-    transition: transform 0.3s;
-}
-</style>
+<style scoped lang="scss" src="@/assets/styles/views/_dashboard.scss"></style>

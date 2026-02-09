@@ -1,0 +1,81 @@
+.shopping-list-card {
+    @include card-base;
+
+    transition:
+        box-shadow $transition-base,
+        transform $transition-base;
+    overflow: hidden;
+
+    &:hover {
+        box-shadow: $shadow-lg;
+        transform: translateY($card-hover-lift);
+
+        .card-title {
+            color: var(--p-primary-color);
+        }
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: $spacing-lg;
+}
+
+.category-icon {
+    width: $icon-container-sm;
+    height: $icon-container-sm;
+    border-radius: $radius-md;
+
+    @include flex-center;
+}
+
+.menu-btn {
+    color: var(--p-surface-400);
+}
+
+.card-title {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--p-surface-900);
+    margin: 0 0 $spacing-xs 0;
+    transition: color $transition-fast;
+}
+
+.card-preview {
+    font-size: $font-size-sm;
+    color: var(--p-surface-500);
+    margin: 0 0 $spacing-lg 0;
+
+    @include text-truncate;
+}
+
+.card-progress {
+    margin-bottom: $spacing-lg;
+}
+
+.progress-info {
+    @include flex-between;
+
+    margin-bottom: $spacing-sm;
+}
+
+.progress-count {
+    font-size: $font-size-sm;
+    color: var(--p-surface-700);
+}
+
+.progress-percent {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+}
+
+.card-footer {
+    @include flex-between;
+}
+
+.time-ago {
+    font-size: $font-size-xs;
+    color: var(--p-surface-400);
+}

@@ -5,23 +5,3 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
 <template>
     <DefaultLayout />
 </template>
-
-<style>
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family:
-        'Inter',
-        -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        Roboto,
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
-</style>
