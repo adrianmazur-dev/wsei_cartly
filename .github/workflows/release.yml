@@ -3,18 +3,15 @@ name: release
 on:
   push:
     branches: [development]
+  workflow_dispatch:
 
 permissions:
   contents: write
   packages: write
 
 jobs:
-  bump-version:
+  release-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.bump.outputs.version }}
-      bumped: ${{ steps.bump.outputs.bumped }}
-
     steps:
       - uses: actions/checkout@v6
         with:
@@ -32,66 +29,58 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump version
+      - name: Bump version (Local)
         id: bump
         run: |
           if cz bump --yes --changelog; then
-            VERSION=$(cz version --project)
-            echo "version=v${VERSION}" >> "$GITHUB_OUTPUT"
+            VERSION="v$(cz version --project)"
+            echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
             echo "bumped=true" >> "$GITHUB_OUTPUT"
           else
             echo "bumped=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Push changes
-        if: steps.bump.outputs.bumped == 'true'
-        run: |
-          git push
-          git push --tags
-
-  deploy:
-    needs: bump-version
-    if: needs.bump-version.outputs.bumped == 'true'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ needs.bump-version.outputs.version }}
-
       - name: Log in to ghcr.io
+        if: steps.bump.outputs.bumped == 'true'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        if: steps.bump.outputs.bumped == 'true'
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build and push backend image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backend
-          file: Dockerfile
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}/backend:${{ needs.bump-version.outputs.version }}
-            ghcr.io/${{ github.repository }}/backend:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Build and push images
+        if: steps.bump.outputs.bumped == 'true'
+        run: |
+          # Backend
+          docker buildx build ./backend \
+            --file ./backend/Dockerfile \
+            --push \
+            --tag ghcr.io/${{ github.repository }}/backend:${{ steps.bump.outputs.version }} \
+            --tag ghcr.io/${{ github.repository }}/backend:latest \
+            --cache-from type=gha \
+            --cache-to type=gha,mode=max
 
-      - name: Build and push frontend image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          file: Dockerfile
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}/frontend:${{ needs.bump-version.outputs.version }}
-            ghcr.io/${{ github.repository }}/frontend:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # Frontend
+          docker buildx build ./frontend \
+            --file ./frontend/Dockerfile \
+            --push \
+            --tag ghcr.io/${{ github.repository }}/frontend:${{ steps.bump.outputs.version }} \
+            --tag ghcr.io/${{ github.repository }}/frontend:latest \
+            --cache-from type=gha \
+            --cache-to type=gha,mode=max
+
+      - name: Push Git changes
+        if: steps.bump.outputs.bumped == 'true'
+        run: |
+          git push
+          git push --tags
 
       - name: Deploy to Coolify
+        if: steps.bump.outputs.bumped == 'true'
         run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' \
+               --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
