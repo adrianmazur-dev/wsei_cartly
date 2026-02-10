@@ -1,3 +1,9 @@
+## v0.4.5 (2026-02-10)
+
+### Fix
+
+- add wget to frontend Dockerfile
+
 ## v0.4.4 (2026-02-10)
 
 ### Fix
