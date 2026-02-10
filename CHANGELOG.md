@@ -1,3 +1,9 @@
+## v0.4.4 (2026-02-10)
+
+### Fix
+
+- reorder include_routers call in create_app function
+
 ## v0.4.3 (2026-02-09)
 
 ### Fix

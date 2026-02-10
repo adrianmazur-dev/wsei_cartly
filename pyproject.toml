@@ -1,6 +1,6 @@
 [tool.commitizen]
 tag_format = "v$version"
-version = "0.4.3"
+version = "0.4.4"
 version_files = [
     "backend/pyproject.toml:version",
     "backend/libs/cartly-domain/pyproject.toml:version",

@@ -7,7 +7,7 @@ cartly-infra = { workspace = true }
 
 [project]
 name = "cartly"
-version = "0.4.3"
+version = "0.4.4"
 requires-python = ">=3.12"
 dependencies = [
     "aiosqlite>=0.22.1",
