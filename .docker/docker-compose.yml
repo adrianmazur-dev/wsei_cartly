@@ -1,0 +1,19 @@
+services:
+  cartly-backend:
+    image: 'ghcr.io/adrianmazur-dev/wsei_cartly/backend:latest'
+    environment:
+      - DATA_DIR=/app/data
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=JSON
+    volumes:
+      - cartly-data:/app/data
+  cartly-frontend:
+    image: 'ghcr.io/adrianmazur-dev/wsei_cartly/frontend:latest'
+    environment:
+      - BACKEND_URL=http://cartly-backend:8000/
+    depends_on:
+      cartly-backend:
+        condition: service_healthy
+
+volumes:
+  cartly-data:
