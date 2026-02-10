@@ -1,3 +1,9 @@
+## v0.5.0 (2026-02-10)
+
+### Feat
+
+- add docker-compose configuration for prod, add healthchecks for frontend and backend
+
 ## v0.4.5 (2026-02-10)
 
 ### Fix
