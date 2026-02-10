@@ -44,8 +44,6 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
 
     # Routers
-    include_routers(app)
-
     @app.get("/")
     async def root():
         return {
@@ -53,6 +51,7 @@ def create_app() -> FastAPI:
             "docs": _DOCS_URL,
             "openapi": _OPENAPI_URL,
         }
+    include_routers(app)
 
     return app
 
