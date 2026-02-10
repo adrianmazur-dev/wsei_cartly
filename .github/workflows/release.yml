@@ -79,8 +79,8 @@ jobs:
           git push
           git push --tags
 
-      - name: Deploy to Coolify
-        if: steps.bump.outputs.bumped == 'true'
-        run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' \
-               --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+      # - name: Deploy to Coolify
+      #   if: steps.bump.outputs.bumped == 'true'
+      #   run: |
+      #     curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' \
+      #          --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
