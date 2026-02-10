@@ -12,6 +12,8 @@ RUN npm run build-only
 # Production stage
 FROM nginx:stable-alpine AS production-stage
 
+RUN apk add --no-cache wget
+
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
